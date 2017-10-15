@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.Model", "Evernote.Model\Evernote.Model.csproj", "{0199191D-E419-49C6-97EC-8098DFCF11D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer", "Evernote.DataLayer\Evernote.DataLayer.csproj", "{6AEDB7DE-027B-49C8-9721-7FF07B9631D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer.Sql", "Evernote.DataLayer.Sql\Evernote.DataLayer.Sql.csproj", "{367CACD1-6EE2-42BB-A561-318DD745F854}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer.Sql.Tests", "UsersRepositoryTest\Evernote.DataLayer.Sql.Tests.csproj", "{69ABCF2F-C583-45FF-A33A-4DC030167B49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0199191D-E419-49C6-97EC-8098DFCF11D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0199191D-E419-49C6-97EC-8098DFCF11D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0199191D-E419-49C6-97EC-8098DFCF11D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0199191D-E419-49C6-97EC-8098DFCF11D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AEDB7DE-027B-49C8-9721-7FF07B9631D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AEDB7DE-027B-49C8-9721-7FF07B9631D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AEDB7DE-027B-49C8-9721-7FF07B9631D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AEDB7DE-027B-49C8-9721-7FF07B9631D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{367CACD1-6EE2-42BB-A561-318DD745F854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{367CACD1-6EE2-42BB-A561-318DD745F854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{367CACD1-6EE2-42BB-A561-318DD745F854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{367CACD1-6EE2-42BB-A561-318DD745F854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
