@@ -13,12 +13,11 @@ namespace Evernote.DataLayer.Sql
         private readonly string _connectionString;
 
         private readonly ICategoriesRepository _categoriesRepository;
-
+        
         public UsersRepository(string connectionString, ICategoriesRepository categoriesRepository)
         {
             _connectionString = connectionString;
             _categoriesRepository = categoriesRepository;
-
         }
 
         public User Create(User user)
@@ -78,6 +77,13 @@ namespace Evernote.DataLayer.Sql
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
+
+                using (var command = sqlConnection.CreateCommand())
+                {
+                    command.CommandText = "delete from Shares where UserId=@id";
+                    command.Parameters.AddWithValue("@id", userId);
+                    command.ExecuteNonQuery();
+                }
 
                 using (var command = sqlConnection.CreateCommand())
                 {

@@ -228,13 +228,13 @@ namespace UsersRepositoryTest
         [TestCleanup]
         public void CleanData()
         {
-            foreach (var id in _tempUsers)
-                new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
             foreach (var id in _tempNotes)
-                new NotesRepository(ConnectionString,new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)),
+                new NotesRepository(ConnectionString, new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)),
                     new CategoriesRepository(ConnectionString)).Delete(id);
             foreach (var id in _tempCategories)
                 new CategoriesRepository(ConnectionString).Delete(id);
+            foreach (var id in _tempUsers)
+                new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
         }
     }
 }

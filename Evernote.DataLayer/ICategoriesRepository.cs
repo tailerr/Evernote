@@ -13,6 +13,8 @@ namespace Evernote.DataLayer
 
         void Delete(Guid catId);
 
+        void Update(Guid catId, string name);
+
         IEnumerable<Category> GetUserCategories(Guid userId);
 
         IEnumerable<Category> GetNoteCategories(Guid noteId);

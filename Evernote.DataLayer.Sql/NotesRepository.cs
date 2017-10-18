@@ -53,6 +53,12 @@ namespace Evernote.DataLayer.Sql
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
+                using (var command = sqlConnection.CreateCommand())
+                {
+                    command.CommandText = "delete from CategoriesToNotes where NoteId=@id";
+                    command.Parameters.AddWithValue("@id", noteId);
+                    command.ExecuteNonQuery();
+                }
 
                 using (var command = sqlConnection.CreateCommand())
                 {

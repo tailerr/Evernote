@@ -124,16 +124,43 @@ namespace UsersRepositoryTest
 
         }
 
+        [TestMethod]
+        public void ShouldUpdateCategory()
+        {
+            var user = new User
+            {
+                Name = "test",
+                Email = "testemail"
+            };
+            const string category = "testCategory";
+            const string newcategory = "newtestCategory";
+
+            
+            var categoriesRepository = new CategoriesRepository(ConnectionString);
+            var usersRepository = new UsersRepository(ConnectionString, categoriesRepository);
+            user = usersRepository.Create(user);
+            _tempUsers.Add(user.Id);
+
+            var cat = categoriesRepository.Create(user.Id, category);
+            _tempCategories.Add(cat.Id);
+            categoriesRepository.Update(cat.Id, newcategory);
+            var catFromDb = categoriesRepository.GetUserCategories(user.Id);
+
+            Assert.AreEqual(newcategory, catFromDb.ElementAt(0).Name);
+            
+        }
+
         [TestCleanup]
         public void CleanData()
         {
-            foreach (var id in _tempUsers)
-                new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
             foreach (var id in _tempCategories)
                 new CategoriesRepository(ConnectionString).Delete(id);
             foreach (var id in _tempNotes)
                 new NotesRepository(ConnectionString, new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)),
                     new CategoriesRepository(ConnectionString)).Delete(id);
-        }
+
+            foreach (var id in _tempUsers)
+                new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
+        }  
     }
 }

@@ -46,6 +46,21 @@ namespace Evernote.DataLayer.Sql
             }
         }
 
+        public void Update(Guid catId, string category)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (var command = sqlConnection.CreateCommand())
+                {
+                    command.CommandText = @"update Categories set Name=@Text where id=@id";
+                    command.Parameters.AddWithValue("@Text", category);
+                    command.Parameters.AddWithValue("@id", catId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
         public IEnumerable<Category> GetNoteCategories(Guid noteId)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))

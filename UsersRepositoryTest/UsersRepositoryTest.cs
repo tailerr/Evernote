@@ -80,10 +80,11 @@ namespace Evernote.DataLayer.Sql.Tests
         [TestCleanup]
         public void CleanData()
         {
-            foreach (var id in _tempUsers)
-                new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
             foreach (var id in _tempCategories)
                 new CategoriesRepository(ConnectionString).Delete(id);
+            foreach (var id in _tempUsers)
+                new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
+            
         }
     }
 }
