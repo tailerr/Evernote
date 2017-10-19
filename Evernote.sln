@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer", "Evern
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer.Sql", "Evernote.DataLayer.Sql\Evernote.DataLayer.Sql.csproj", "{367CACD1-6EE2-42BB-A561-318DD745F854}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer.Sql.Tests", "UsersRepositoryTest\Evernote.DataLayer.Sql.Tests.csproj", "{69ABCF2F-C583-45FF-A33A-4DC030167B49}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.Api", "Evernote.Api\Evernote.Api.csproj", "{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.Datalayer.Sql.Tests", "Evernote.Datalayer.Sql.Tests\Evernote.Datalayer.Sql.Tests.csproj", "{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{367CACD1-6EE2-42BB-A561-318DD745F854}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{367CACD1-6EE2-42BB-A561-318DD745F854}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{367CACD1-6EE2-42BB-A561-318DD745F854}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69ABCF2F-C583-45FF-A33A-4DC030167B49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
