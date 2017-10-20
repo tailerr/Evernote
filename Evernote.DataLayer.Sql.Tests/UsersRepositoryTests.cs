@@ -47,7 +47,7 @@ namespace Evernote.DataLayer.Sql.Tests
             var result = repository.Create(user);
             _tempUsers.Add(result.Id);
             repository.Delete(result.Id);
-            var userFromDb=repository.Get(result.Id);
+            var userFromDb = repository.Get(result.Id);
         }
 
         [TestMethod]
@@ -84,8 +84,7 @@ namespace Evernote.DataLayer.Sql.Tests
                 new CategoriesRepository(ConnectionString).Delete(id);
             foreach (var id in _tempUsers)
                 new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
-            
+
         }
     }
 }
-

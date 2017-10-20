@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer.Sql", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.Api", "Evernote.Api\Evernote.Api.csproj", "{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.Datalayer.Sql.Tests", "Evernote.Datalayer.Sql.Tests\Evernote.Datalayer.Sql.Tests.csproj", "{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evernote.DataLayer.Sql.Tests", "Evernote.DataLayer.Sql.Tests\Evernote.DataLayer.Sql.Tests.csproj", "{9C367281-7B07-456D-A2E2-C1AE626685A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCAD4791-A4ED-4329-9C1D-03707BB6C70A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4B944BA-3F9E-4E4D-B65B-A6D7C2DBF09F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C367281-7B07-456D-A2E2-C1AE626685A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C367281-7B07-456D-A2E2-C1AE626685A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C367281-7B07-456D-A2E2-C1AE626685A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C367281-7B07-456D-A2E2-C1AE626685A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

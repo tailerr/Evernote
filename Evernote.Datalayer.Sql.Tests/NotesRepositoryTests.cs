@@ -68,7 +68,7 @@ namespace UsersRepositoryTest
                 Text = "testText2",
                 Owner = userResult.Id,
             };
-            
+
             var noteResult = noteRepository.Create(note);
             _tempNotes.Add(noteResult.Id);
             noteRepository.Delete(noteResult.Id);
@@ -97,8 +97,8 @@ namespace UsersRepositoryTest
             };
             var noteResult = noteRepository.Create(note);
             _tempNotes.Add(noteResult.Id);
-            noteResult.Text = noteResult.Text+"1";
-            noteResult.Head = noteResult.Head+"1";
+            noteResult.Text = noteResult.Text + "1";
+            noteResult.Head = noteResult.Head + "1";
             noteRepository.ChangeNote(noteResult);
             var noteFromDb = noteRepository.Get(noteResult.Id);
             Assert.AreEqual("testText1", noteFromDb.Text);
@@ -192,7 +192,7 @@ namespace UsersRepositoryTest
             _tempCategories.Add(resCategory.Id);
             noteRepository.AddCategory(noteResult.Id, resCategory.Id);
             var noteFromDb = noteRepository.Get(noteResult.Id);
-            Assert.AreEqual(category, noteFromDb.Categories.ElementAt(0).Name); 
+            Assert.AreEqual(category, noteFromDb.Categories.ElementAt(0).Name);
         }
 
         [TestMethod]

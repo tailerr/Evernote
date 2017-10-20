@@ -135,7 +135,7 @@ namespace UsersRepositoryTest
             const string category = "testCategory";
             const string newcategory = "newtestCategory";
 
-            
+
             var categoriesRepository = new CategoriesRepository(ConnectionString);
             var usersRepository = new UsersRepository(ConnectionString, categoriesRepository);
             user = usersRepository.Create(user);
@@ -147,7 +147,7 @@ namespace UsersRepositoryTest
             var catFromDb = categoriesRepository.GetUserCategories(user.Id);
 
             Assert.AreEqual(newcategory, catFromDb.ElementAt(0).Name);
-            
+
         }
 
         [TestCleanup]
@@ -161,6 +161,6 @@ namespace UsersRepositoryTest
 
             foreach (var id in _tempUsers)
                 new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)).Delete(id);
-        }  
+        }
     }
 }
