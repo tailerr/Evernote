@@ -47,6 +47,28 @@ namespace UsersRepositoryTest
         }
 
         [TestMethod]
+        public void ShouldGetCategory()
+        {
+            var user = new User
+            {
+                Name = "test",
+                Email = "testemail"
+            };
+            const string category = "testCategory";
+
+
+            var categoriesRepository = new CategoriesRepository(ConnectionString);
+            var usersRepository = new UsersRepository(ConnectionString, categoriesRepository);
+            user = usersRepository.Create(user);
+            _tempUsers.Add(user.Id);
+
+            var cat = categoriesRepository.Create(user.Id, category);
+            _tempCategories.Add(cat.Id);
+            var catFromDb = categoriesRepository.Get(cat.Id);
+            Assert.AreEqual(category, catFromDb.Name);
+        }
+
+        [TestMethod]
         public void ShouldDeleteCategory()
         {
             var user = new User

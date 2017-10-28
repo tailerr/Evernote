@@ -15,6 +15,8 @@ namespace Evernote.DataLayer
 
         void Update(Guid catId, string name);
 
+        Category Get(Guid catId);
+
         IEnumerable<Category> GetUserCategories(Guid userId);
 
         IEnumerable<Category> GetNoteCategories(Guid noteId);

@@ -104,11 +104,6 @@ namespace Evernote.DataLayer.Sql
 
                         while (reader.Read())
                         {
-                            using (var command1 = sqlConnection.CreateCommand())
-                            {
-
-                            }
-
                             yield return new Note
                             {
                                 Id = reader.GetGuid(reader.GetOrdinal("id")),
@@ -193,7 +188,7 @@ namespace Evernote.DataLayer.Sql
                     using (var reader = command.ExecuteReader())
                     {
                         if (!reader.Read())
-                            throw new ArgumentException($"Заметка с id {noteId} не найдена");
+                            return null;
 
                         var note = new Note
                         {
