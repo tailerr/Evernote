@@ -121,9 +121,11 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Configurator\GetConnectionString.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Filters\RepositoryExceptionFilterAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

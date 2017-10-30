@@ -7,19 +7,22 @@ using System.Web.Http;
 using Evernote.Model;
 using Evernote.DataLayer.Sql;
 using Evernote.DataLayer;
+using Evernote.Api.Filters;
+using Evernote.Api.Configurator;
 
 namespace Evernote.Api.Controllers
 {
     public class CategoriesController : ApiController
     {
-        private const string ConnectionString = @"Data Source=LAPTOP-BSCP12KB\SQLEXPRESS;
-                                                Database=myDb;
-                                                Trusted_Connection = True";
+        //private const string ConnectionString = @"Data Source=LAPTOP-BSCP12KB\SQLEXPRESS;
+        //                                      Database=myDb;
+        //                                    Trusted_Connection = True";
+
         private readonly ICategoriesRepository _categoriesRepository;
 
         public CategoriesController()
         {
-            _categoriesRepository = new CategoriesRepository(ConnectionString);
+            _categoriesRepository = new CategoriesRepository(GetConnectionString.GetConnectionStringByName("ConnectionString"));
         }
 
         /// <summary>
@@ -54,20 +57,10 @@ namespace Evernote.Api.Controllers
         /// </summary>
         /// <param name="category">категория</param>
         [HttpPut]
+        [RepositoryExceptionFilter]
         [Route("api/categories")]
         public void Update(Category category)
         {
-            var catFromDb = _categoriesRepository.Get(category.Id);
-            if (catFromDb == null)
-            {
-                Logger.Log.Instance.Error("Категории с идентификатором: {0} не существует", category.Id);
-                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format("Категории с идентификатором: {0} не существует", category.Id)),
-                    ReasonPhrase = "Product ID Not Found"
-                };
-                throw new HttpResponseException(resp);
-            }
             Logger.Log.Instance.Info("Изменение категории: {0}", category.Id);
             _categoriesRepository.Update(category.Id, category.Name);
         }
@@ -79,20 +72,10 @@ namespace Evernote.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/categories/{id}")]
+        [RepositoryExceptionFilter]
         public Category Get(Guid id)
         {
-            var categrory = _categoriesRepository.Get(id);
-            if (categrory == null)
-            {
-                Logger.Log.Instance.Error("Категории с идентификатором {0} не существует", id);
-                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format("Категории с идентификатором: {0} не существует", id)),
-                    ReasonPhrase = "Product ID Not Found"
-                };
-                throw new HttpResponseException(resp);
-            }
-            return categrory;
+            return _categoriesRepository.Get(id);
         }
 
 

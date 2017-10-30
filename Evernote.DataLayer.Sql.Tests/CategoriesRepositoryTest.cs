@@ -14,7 +14,7 @@ namespace UsersRepositoryTest
     public class CategoriesRepositoryTests
     {
         private const string ConnectionString = @"Data Source=LAPTOP-BSCP12KB\SQLEXPRESS;
-                                                Database=myDb;
+                                               Database=myDb;
                                                 Trusted_Connection = True";
         private readonly List<Guid> _tempUsers = new List<Guid>();
         private readonly List<Guid> _tempNotes = new List<Guid>();

@@ -9,6 +9,7 @@ using Evernote.DataLayer.Sql;
 using Evernote.DataLayer;
 using NLog;
 using Evernote.Logger;
+using Evernote.Api.Filters;
 
 
 namespace Evernote.Api.Controllers
@@ -31,22 +32,11 @@ namespace Evernote.Api.Controllers
         /// <param name="id">идентификатор</param>
         /// <returns></returns>
         [HttpGet]
+        [RepositoryExceptionFilter]
         [Route("api/users/{id}")]
         public User Get(Guid id)
         {
-            var user = _usersRepository.Get(id);
-            if (user == null)
-            {
-                Logger.Log.Instance.Error("Пользователя с идентификатором: {0} не существует", id);
-                
-                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format("Пользователя с идентификатором: {0} не существует", id)),
-                    ReasonPhrase = "Product ID Not Found"
-                };
-                throw new HttpResponseException(resp);
-            }
-            return user;
+            return _usersRepository.Get(id);
         }
 
         /// <summary>
@@ -81,20 +71,10 @@ namespace Evernote.Api.Controllers
         /// <param name="id">идентификатор</param>
         /// <returns></returns>
         [HttpGet]
+        [RepositoryExceptionFilter]
         [Route("api/users/{id}/categories")]
         public IEnumerable<Category> GetUserCategories(Guid id)
         {
-            var user = _usersRepository.Get(id);
-            if (user == null)
-            {
-                Logger.Log.Instance.Error("Пользователя с идентификатором: {0} не существует", id);
-                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format("Пользователя с идентификатором: {0} не существует", id)),
-                    ReasonPhrase = "Product ID Not Found"
-                };
-                throw new HttpResponseException(resp);
-            }
             return _usersRepository.Get(id).Categories;
             
         }

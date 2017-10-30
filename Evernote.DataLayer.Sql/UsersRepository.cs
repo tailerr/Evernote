@@ -56,7 +56,7 @@ namespace Evernote.DataLayer.Sql
                     using (var reader = command.ExecuteReader())
                     {
                         if (!reader.Read())
-                            return null;
+                            throw new ArgumentException($"Пользователь с id {userId} не найден");
 
                         var user = new User
                         {
