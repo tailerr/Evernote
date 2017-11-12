@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Evernote.WPF.Controls.EditNote"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Evernote.WPF.Controls"
+             Background="Lavender"
+             mc:Ignorable="d" d:DesignWidth="230" LostFocus="UserControl_LostFocus" Height="312">
+    <Border BorderBrush="Gray" BorderThickness="2">
+        <Grid>
+            <TextBox Name="Head" Background="Lavender" BorderBrush="Gray" Width="200" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="13,0,0,0"></TextBox>
+            <TextBox AcceptsReturn="True"
+                    AcceptsTab="True"
+                    VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" 
+                    Name="Body" BorderBrush="Gray" Background="Lavender"
+                    HorizontalAlignment="Center" Width="200" VerticalAlignment="Top" Height="233"  Margin="13,25,13,0" MouseRightButtonDown="Body_MouseRightButtonDown">
+                <TextBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="MenuItemDel" Header="Удалить заметку" Click="MenuItemDel_Click" />
+                        <MenuItem Header="Поделиться заметкой" Name="MenuItemShare" Click="MenuItemShare_Click" />
+                        <MenuItem Name="GetShares" Header="Узнать с кем поделились заметкой" Click="GetShares_Click" />
+                        <Separator></Separator>
+                        <MenuItem Name="MenuItemAdd" Header="Добавить категорию к заметке" Click="MenuItemAdd_Click"/>
+                    </ContextMenu>
+                </TextBox.ContextMenu>
+            </TextBox>
+            <WrapPanel Name="Cats" Height="30" Margin="13,266,13,0" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Width="200" VerticalAlignment="Top"/>
+        </Grid>
+    </Border>
+</UserControl>

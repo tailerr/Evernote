@@ -1,0 +1,15 @@
+﻿<Window x:Class="Evernote.WPF.Forms.DeleteUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Evernote.WPF.Forms"
+        mc:Ignorable="d"
+        Title="DeleteUserWindow" Height="200" Width="300" 
+        ResizeMode="NoResize">
+    <Grid>
+        <Button Name="btnOK" Content="Ок" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="20" Margin="0,0,75,10" IsDefault="True" Click="btnOK_Click_1"></Button>
+        <Button Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="20" Margin="0,0,10,10" IsCancel="True"></Button>
+        <Label Name="Label" Content="Действительно ли вы хотите удалить аккаунт?" Height="30" VerticalAlignment="Top" Margin="0,10,0,0"></Label>
+    </Grid>
+</Window>
