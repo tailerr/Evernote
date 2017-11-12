@@ -8,20 +8,19 @@ using Evernote.Model;
 using Evernote.DataLayer.Sql;
 using Evernote.DataLayer;
 using Evernote.Api.Filters;
+using Evernote.Api.Configurator;
 
 namespace Evernote.Api.Controllers
 {
     public class NotesController : ApiController
     {
-        private const string ConnectionString = @"Data Source=LAPTOP-BSCP12KB\SQLEXPRESS;
-                                                Database=myDb;
-                                                Trusted_Connection = True";
         private readonly INotesRepository _notesRepository;
         private readonly IUsersRepository _usersRepository;
         private readonly ICategoriesRepository _categoriesRepository;
 
         public NotesController()
         {
+            string ConnectionString = GetConnectionString.GetConnectionStringByName("ConnectionString");
             _notesRepository = new NotesRepository(ConnectionString,
                 new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString)), 
                 new CategoriesRepository(ConnectionString));
@@ -99,6 +98,32 @@ namespace Evernote.Api.Controllers
         }
 
         /// <summary>
+        /// Получение расшареных заметок пользователя по его идентификатору
+        /// </summary>
+        /// <param name="userId">идентификатор пользователя</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/users/{userId}/sharednotes")]
+        [RepositoryExceptionFilter]
+        public IEnumerable<Note> GetSharedNotes(Guid userId)
+        {
+            return _notesRepository.GetSharedNotes(userId);
+        }
+
+        /// <summary>
+        /// Получение категорий заметки по ее идентификатору
+        /// </summary>
+        /// <param name="noteId">идентификатор заметки</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/notes/{noteId}/categories")]
+        [RepositoryExceptionFilter]
+        public IEnumerable<Category> GetNoteCategories(Guid noteId)
+        {
+            return _categoriesRepository.GetNoteCategories(noteId);
+        }
+
+        /// <summary>
         /// Поделиться записью с пользователем по идентификаторам
         /// </summary>
         /// <param name="noteId">id заметки</param>
@@ -138,7 +163,11 @@ namespace Evernote.Api.Controllers
             Logger.Log.Instance.Info("Добавление категории {0} к заметке {1}",catId, noteId);
             _notesRepository.AddCategory(noteId, catId);
         }
-
+        /// <summary>
+        /// Удалить категорию у заметки
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <param name="catId"></param>
         [HttpDelete]
         [RepositoryExceptionFilter]
         [Route("api/notes/{noteId}/categories/{catId}")]

@@ -14,5 +14,7 @@ namespace Evernote.DataLayer
         void Delete(Guid userId);
 
         User Get(Guid userId);
+
+        User Get(string userName);
     }
 }

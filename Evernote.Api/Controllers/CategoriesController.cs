@@ -14,9 +14,6 @@ namespace Evernote.Api.Controllers
 {
     public class CategoriesController : ApiController
     {
-        //private const string ConnectionString = @"Data Source=LAPTOP-BSCP12KB\SQLEXPRESS;
-        //                                      Database=myDb;
-        //                                    Trusted_Connection = True";
 
         private readonly ICategoriesRepository _categoriesRepository;
 
@@ -25,20 +22,7 @@ namespace Evernote.Api.Controllers
             _categoriesRepository = new CategoriesRepository(GetConnectionString.GetConnectionStringByName("ConnectionString"));
         }
 
-        /// <summary>
-        /// Cоздание категории
-        /// </summary>
-        /// <param name="userid">владелец категории</param>
-        /// <param name="category">имя категории</param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("api/users/{userid}/categories/{category}")] 
-        public Category Post(Guid userid, string category)
-        {
-            Logger.Log.Instance.Info("Создание категории с именем: {0}", category);
-
-            return _categoriesRepository.Create(userid, category);
-        }
+        
 
         /// <summary>
         /// Удаление категории по идентификатору
@@ -76,6 +60,19 @@ namespace Evernote.Api.Controllers
         public Category Get(Guid id)
         {
             return _categoriesRepository.Get(id);
+        }
+
+        /// <summary>
+        /// Получение категории по имени
+        /// </summary>
+        /// <param name="catName">имя категории</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/categories/name/{name}")]
+        [RepositoryExceptionFilter]
+        public Category Get(string name)
+        {
+            return _categoriesRepository.Get(name);
         }
 
 

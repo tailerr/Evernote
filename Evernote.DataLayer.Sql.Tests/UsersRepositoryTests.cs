@@ -34,6 +34,24 @@ namespace Evernote.DataLayer.Sql.Tests
         }
 
         [TestMethod]
+        public void ShouldGetByNameUser()
+        {
+            var user = new User
+            {
+                Name = "test",
+                Email = "testmail"
+            };
+
+            var repository = new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString));
+            var result = repository.Create(user);
+            _tempUsers.Add(user.Id);
+
+            var userFromDb = repository.Get(result.Name);
+
+            Assert.AreEqual(result.Id, userFromDb.Id);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ShouldDeleteUser()
         {

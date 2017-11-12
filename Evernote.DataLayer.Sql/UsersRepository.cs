@@ -72,6 +72,36 @@ namespace Evernote.DataLayer.Sql
 
         }
 
+        public User Get(string userName)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (var command = sqlConnection.CreateCommand())
+                {
+                    command.CommandText = "select * from Users where Name=@name";
+                    command.Parameters.AddWithValue("@name", userName);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                            throw new ArgumentException($"Пользователь с id {userName} не найден");
+
+                        var user = new User
+                        {
+                            Id = reader.GetGuid(reader.GetOrdinal("id")),
+                            Name = userName,
+                            Email = reader.GetString(reader.GetOrdinal("Email"))
+                        };
+                        user.Categories = _categoriesRepository.GetUserCategories(user.Id);
+                        return user;
+                    }
+                }
+            }
+
+        }
+
         public void Delete(Guid userId)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))

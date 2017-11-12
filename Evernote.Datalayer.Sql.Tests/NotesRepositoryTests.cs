@@ -166,6 +166,41 @@ namespace UsersRepositoryTest
         }
 
         [TestMethod]
+        public void ShouldGetSharedNotes()
+        {
+            var user = new User
+            {
+                Name = "test",
+                Email = "testmail"
+            };
+            var user1 = new User
+            {
+                Name = "test1",
+                Email = "testmail1"
+            };
+            var categoryRepository = new CategoriesRepository(ConnectionString);
+            var userRepository = new UsersRepository(ConnectionString, categoryRepository);
+            var noteRepository = new NotesRepository(ConnectionString, userRepository, categoryRepository);
+
+            var userResult = userRepository.Create(user);
+            var userResult1 = userRepository.Create(user1);
+            _tempUsers.Add(userResult.Id);
+            _tempUsers.Add(userResult1.Id);
+            var note = new Note
+            {
+                Head = "testHead",
+                Text = "testText",
+                Owner = userResult.Id,
+            };
+            var noteResult = noteRepository.Create(note);
+            _tempNotes.Add(noteResult.Id);
+            noteRepository.ShareNote(noteResult.Id, userResult1.Id);
+            var noteFromDb = noteRepository.GetSharedNotes(userResult1.Id);
+            Assert.AreEqual(noteFromDb.ElementAt(0).Id, noteResult.Id);
+
+        }
+
+        [TestMethod]
         public void ShouldAddCategoryToNote()
         {
             var user = new User

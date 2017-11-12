@@ -88,6 +88,33 @@ namespace Evernote.DataLayer.Sql
                 }
             }
         }
+
+        public Category Get(string catName)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (var command = sqlConnection.CreateCommand())
+                {
+                    command.CommandText = "select * from Categories where Name=@name";
+                    command.Parameters.AddWithValue("@name", catName);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                            throw new ArgumentException($"Категория с именем {catName} не найдена");
+
+                        var category = new Category
+                        {
+                            Id = reader.GetGuid(reader.GetOrdinal("id")),
+                            Name = catName,
+                        };
+                        return category;
+                    }
+                }
+            }
+        }
         public IEnumerable<Category> GetNoteCategories(Guid noteId)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))

@@ -10,22 +10,23 @@ using Evernote.DataLayer;
 using NLog;
 using Evernote.Logger;
 using Evernote.Api.Filters;
+using Evernote.Api.Configurator;
 
 
 namespace Evernote.Api.Controllers
 {
     public class UsersController : ApiController
     {
-        private const string ConnectionString = @"Data Source=LAPTOP-BSCP12KB\SQLEXPRESS;
-                                                Database=myDb;
-                                                Trusted_Connection = True";
         private readonly IUsersRepository _usersRepository;
+        private readonly ICategoriesRepository _categoriesRepository;
 
         public UsersController()
         {
+            string ConnectionString = GetConnectionString.GetConnectionStringByName("ConnectionString");
             _usersRepository = new UsersRepository(ConnectionString, new CategoriesRepository(ConnectionString));
+            _categoriesRepository = new CategoriesRepository(ConnectionString);
         }
-        
+
         /// <summary>
         /// Получить пользователя по идентификатору
         /// </summary>
@@ -37,6 +38,19 @@ namespace Evernote.Api.Controllers
         public User Get(Guid id)
         {
             return _usersRepository.Get(id);
+        }
+
+        /// <summary>
+        /// Получить пользователя по имени
+        /// </summary>
+        /// <param name="name">имя</param>
+        /// <returns></returns>
+        [HttpGet]
+        [RepositoryExceptionFilter]
+        [Route("api/users/name/{name}")]
+        public User Get(string name)
+        {
+            return _usersRepository.Get(name);
         }
 
         /// <summary>
@@ -76,7 +90,24 @@ namespace Evernote.Api.Controllers
         public IEnumerable<Category> GetUserCategories(Guid id)
         {
             return _usersRepository.Get(id).Categories;
-            
+
+        }
+
+        
+
+        /// <summary>
+        /// Cоздание категории
+        /// </summary>
+        /// <param name="userid">владелец категории</param>
+        /// <param name="category">имя категории</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/users/{userid}/category")]
+        public Category Post(Guid userid, [FromBody] Category category)
+        {
+            Logger.Log.Instance.Info("Создание категории с именем: {0}", category.Name);
+
+            return _categoriesRepository.Create(userid, category.Name);
         }
     }
 }

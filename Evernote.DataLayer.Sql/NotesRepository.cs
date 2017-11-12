@@ -119,6 +119,40 @@ namespace Evernote.DataLayer.Sql
                 }
             }
         }
+        public IEnumerable<Note> GetSharedNotes(Guid userId)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (var command = sqlConnection.CreateCommand())
+                {
+                    command.CommandText = @"select * from Shares right join Notes on Shares.NoteId=Notes.id
+                                           where Shares.UserId = @userid";
+
+                    command.Parameters.AddWithValue("@userid", userId);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        User user = _usersRepository.Get(userId);
+
+                        while (reader.Read())
+                        {
+                            yield return new Note
+                            {
+                                Id = reader.GetGuid(reader.GetOrdinal("id")),
+                                Text = reader.GetString(reader.GetOrdinal("Text")),
+                                Head = reader.GetString(reader.GetOrdinal("Head")),
+                                Changed = reader.GetDateTime(reader.GetOrdinal("DateOfChange")),
+                                Created = reader.GetDateTime(reader.GetOrdinal("DateCreation")),
+                                Owner = user.Id,
+                                Categories = _categoriesRepository.GetNoteCategories(reader.GetGuid(reader.GetOrdinal("id")))
+                            };
+                        }
+                    }
+                }
+            }
+        }
 
         public void ShareNote(Guid noteId, Guid userId)
         {

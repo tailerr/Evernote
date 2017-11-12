@@ -19,6 +19,8 @@ namespace Evernote.DataLayer
 
         IEnumerable<Note> GetUsersNotes(Guid userId);
 
+        IEnumerable<Note> GetSharedNotes(Guid userId);
+
         void ShareNote(Guid noteId, Guid userId);
 
         IEnumerable<User> GetShares(Guid noteId);
